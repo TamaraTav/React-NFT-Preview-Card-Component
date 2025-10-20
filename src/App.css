@@ -1,23 +1,54 @@
+:root {
+  --card-padding: clamp(16px, 4vw, 24px);
+  --card-margin: clamp(16px, 4vw, 32px);
+  --card-border-radius: 15px;
+  --image-border-radius: 8px;
+  --spacing-xs: clamp(8px, 2vw, 12px);
+  --spacing-sm: clamp(12px, 3vw, 16px);
+  --spacing-md: clamp(16px, 4vw, 24px);
+  --spacing-lg: clamp(20px, 5vw, 32px);
+  --font-size-title: clamp(18px, 4vw, 22px);
+  --font-size-text: clamp(14px, 3.5vw, 18px);
+  --font-size-small: clamp(12px, 3vw, 16px);
+  --line-height-title: clamp(22px, 5vw, 28px);
+  --line-height-text: clamp(20px, 4.5vw, 26px);
+  --line-height-small: clamp(16px, 4vw, 20px);
+}
+
 .root {
-  font-family: 'Outfit', sans-serif;
-  padding: 24px;
-  background: #15263F;
+  font-family: "Outfit", sans-serif;
+  padding: var(--card-padding);
+  margin: var(--card-margin);
+  background: #15263f;
   box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.0952917);
-  border-radius: 15px;
+  border-radius: var(--card-border-radius);
+  max-width: 350px;
+  width: 100%;
 }
 
 .equilibrium {
-  width: 278px;
-  border-radius: 8px;
+  width: 100%;
+  max-width: 278px;
+  border-radius: var(--image-border-radius);
+  height: auto;
 }
 
 .image-container {
   position: relative;
 }
 
-.image-container:hover .hover {
+.image-container:hover .hover,
+.image-container:active .hover,
+.image-container:focus .hover {
   display: block;
   cursor: pointer;
+}
+
+/* Touch devices support */
+@media (hover: none) and (pointer: coarse) {
+  .image-container:active .hover {
+    display: block;
+  }
 }
 
 .hover {
@@ -27,7 +58,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 255, 248, 0.5);
-  border-radius: 8px;
+  border-radius: var(--image-border-radius);
   display: none;
 }
 
@@ -40,37 +71,47 @@
 
 .title {
   font-weight: 600;
-  font-size: 22px;
-  line-height: 28px;
-  color: #FFFFFF;
-  margin-top: 24px;
+  font-size: var(--font-size-title);
+  line-height: var(--line-height-title);
+  color: #ffffff;
+  margin-top: var(--spacing-md);
   transition: 0.5s;
   max-width: 13ch;
   cursor: pointer;
 }
 
-.title:hover {
-  color: #00FFF8;
+.title:hover,
+.title:active,
+.title:focus {
+  color: #00fff8;
+}
+
+/* Touch devices support */
+@media (hover: none) and (pointer: coarse) {
+  .title:active {
+    color: #00fff8;
+  }
 }
 
 .text {
   font-weight: 300;
-  font-size: 18px;
-  line-height: 26px;
-  color: #8BACD9;
-  margin-top: 12px;
+  font-size: var(--font-size-text);
+  line-height: var(--line-height-text);
+  color: #8bacd9;
+  margin-top: var(--spacing-sm);
   max-width: 20ch;
 }
 
 .info {
-  margin-top: 17px;
+  margin-top: var(--spacing-sm);
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #2E405A;
-  padding-bottom: 16px;
+  border-bottom: 1px solid #2e405a;
+  padding-bottom: var(--spacing-sm);
 }
 
-.eth, .time {
+.eth,
+.time {
   display: flex;
   align-items: center;
   gap: 9px;
@@ -78,23 +119,23 @@
 
 .eth {
   font-weight: 600;
-  font-size: 15px;
-  line-height: 19px;
-  color: #00FFF8;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  color: #00fff8;
 }
 
 .time {
   font-weight: 400;
-  font-size: 15px;
-  line-height: 19px;
-  color: #8BACD9;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  color: #8bacd9;
 }
 
 .avatar {
-  margin-top: 16px;
+  margin-top: var(--spacing-sm);
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--spacing-sm);
 }
 
 .avatar img {
@@ -105,24 +146,119 @@
 
 .avatar-text {
   font-weight: 400;
-  font-size: 15px;
-  line-height: 19px;
-  color: #8BACD9;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  color: #8bacd9;
 }
 
 .avatar-text span {
-  color: #FFFFFF;
+  color: #ffffff;
   margin-left: 5px;
   transition: 0.5s;
   cursor: pointer;
 }
 
-span:hover {
-  color: #00FFF8;
+.avatar-text span:hover,
+.avatar-text span:active,
+.avatar-text span:focus {
+  color: #00fff8;
 }
 
+/* Touch devices support */
+@media (hover: none) and (pointer: coarse) {
+  .avatar-text span:active {
+    color: #00fff8;
+  }
+}
 
+/* Small Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .root {
+    padding: 16px;
+    margin: 16px;
+  }
 
+  .equilibrium {
+    width: 100%;
+    max-width: 248px;
+  }
+
+  .title {
+    font-size: clamp(18px, 4vw, 20px);
+    line-height: clamp(22px, 5vw, 24px);
+  }
+
+  .text {
+    font-size: clamp(14px, 3.5vw, 16px);
+    line-height: clamp(20px, 4.5vw, 22px);
+  }
+
+  .eth p,
+  .time p {
+    font-size: clamp(12px, 3vw, 14px);
+  }
+
+  .avatar-text {
+    font-size: clamp(12px, 3vw, 14px);
+  }
+}
+
+/* Large Mobile (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .root {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .equilibrium {
+    width: 100%;
+    max-width: 268px;
+  }
+
+  .title {
+    font-size: clamp(20px, 4.5vw, 22px);
+  }
+
+  .text {
+    font-size: clamp(16px, 3.8vw, 18px);
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .root {
+    padding: 22px;
+    margin: 24px;
+  }
+
+  .equilibrium {
+    width: 100%;
+    max-width: 278px;
+  }
+
+  .title {
+    font-size: clamp(20px, 2.5vw, 22px);
+  }
+
+  .text {
+    font-size: clamp(16px, 2vw, 18px);
+  }
+}
+
+/* Desktop (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .root {
+    padding: 24px;
+    margin: 32px;
+  }
+
+  .equilibrium {
+    width: 100%;
+    max-width: 278px;
+  }
+}
+
+/* Large Desktop (1440px+) */
 @media (min-width: 1440px) {
   .root {
     padding: 24px 24px 32px 24px;
@@ -137,7 +273,8 @@ span:hover {
     padding-bottom: 24px;
   }
 
-  .eth p, .time p {
+  .eth p,
+  .time p {
     font-size: 16px;
     line-height: 20px;
   }
